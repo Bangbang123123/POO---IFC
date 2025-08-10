@@ -78,34 +78,34 @@ public class exercícios {
 			case 13:
 				System.out.print("Informe a quantidade de peixes (Kg): ");
 				float peixe = input.nextFloat();
-				System.out.print("O excesso é de: "+ (peixe - 50) +"Kg\nE a multa é de: "+ (peixe - 50)*4 +"R$");
+				System.out.print("O excesso é de: "+ (peixe - 50) +"Kg\nE a multa é de: R$ "+ (peixe - 50)*4);
 				break;
 			case 14:
 				System.out.print("Ganho por hora: ");
 				float salario_bruto = input.nextFloat();
 				System.out.print("Horas trabalhadas nesse mês: ");
 				salario_bruto *= input.nextFloat();
-				System.out.print("Salário Bruto: "+ salario_bruto
-						+" R$\nImposto de renda: "+ (salario_bruto * 0.11)
-						+" R$\nINSS: "+ (salario_bruto * 0.08)
-						+" R$\nSindicato: "+ (salario_bruto * 0.05)
-						+" R$\nSalário Líquido: "+ (salario_bruto * 0.76)
-						+" R$");
+				System.out.print("Salário Bruto: R$"+ salario_bruto
+						+"\nImposto de renda: R$"+ (salario_bruto * 0.11)
+						+"\nINSS: R$"+ (salario_bruto * 0.08)
+						+"\nSindicato: R$"+ (salario_bruto * 0.05)
+						+"\nSalário Líquido: R$"+ (salario_bruto * 0.76)
+						);
 				break;
 			case 15:
 				System.out.print("Informe a área em metros quadrados: ");
 				double latas = Math.floor(input.nextDouble()/3/18 + 1);
-				System.out.print("Latas a comprar: "+ latas + "\nPreço total: "+ latas*80 +" R$");
+				System.out.print("Latas a comprar: "+ latas + "\nPreço total: R$"+ (latas*80));
 				break;
 			case 16:
 				System.out.print("Informe a área em metros quadrados: ");
 				double litros = input.nextDouble()/6;
 				double lata = Math.floor(litros/18+1);
 				double galoes = Math.floor(litros/3.6+1);
-				System.out.print("\nLatas a comprar: "+ lata
-						+ "\nPreço total: "+ lata*80 +" R$"
-						+ "\n\nGalões a comprar: "+ galoes
-						+ "\nPreço total: "+ galoes*25 + " R$"
+				System.out.print("\nLatas a comprar: R$ "+ lata
+						+ "\nPreço total: R$ "+ lata*80
+						+ "\n\nGalões a comprar: R$ "+ galoes
+						+ "\nPreço total: R$ "+ galoes*25
 						);
 				break;
 		}
