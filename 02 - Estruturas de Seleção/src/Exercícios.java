@@ -463,22 +463,196 @@ public class Exercícios {
 				}
 				break;
 			case 28:
+				// The operations I choose were (+ - * /)
+				System.out.println("Informe 2 números e a operação [(+)(-)(*)(/)]:");
+				float n_1 = input.nextFloat(); float n_2 = input.nextFloat();
+				input.nextLine();
+				char choose = input.nextLine().charAt(0);
+				float result = 0;
+				switch(choose) {
+				default:
+					System.out.print("Escolha inválida");
+					System.exit(0);
+				case '+':
+					result = n_1 + n_2;
+					break;
+				case '-':
+					result = n_1 - n_2;
+					break;				
+				case '*':
+					result = n_1 * n_2;
+					break;
+				case '/':
+					if (n_2 != 0) {
+						result = n_1 / n_2;
+					}else {
+						System.out.print("Divisão por 0");
+						System.exit(0);
+					}
+					break;
+				}
 				
+				System.out.println("O resultado da operação ("+ choose +") é: "+ result);
+				if (result % 2 == 0) {
+					System.out.println("O número é par");
+				}else {
+					System.out.println("O número é ímpar");
+				}
+				if (result >= 0) {
+					System.out.println("O número é positivo");
+				}else {
+					System.out.println("O número é negativo");
+				}
+				if (result == Math.floor(result)) {
+					System.out.print("O número é inteiro");
+				}else {
+					System.out.print("O número é decimal");
+				}
 				break;
 			case 29:
-				
+				System.out.println("Responda as seguintes perguntas com [s/n]: ");
+				String[] perguntas = {"Telefonou para a vítima?","Esteve no local do crime?","Mora perto da vítima?","Devia para a vítima?","Já trabalhou com a vítima?"};
+				int counter = 0;
+				int i = 0;
+				input.nextLine();
+				while (i < perguntas.length) {
+					System.out.print(perguntas[i] +": ");
+					char response = input.nextLine().charAt(0);
+					if (response == 's') {
+						counter++;
+						i++;
+					}else if (response == 'n') {
+						i++;
+					}else {
+						System.out.println("Resposta inválida\n");
+					}
+				}
+				switch(counter) {
+					default:
+						System.out.print("\nInocente");
+						break;
+					case 2:
+						System.out.print("\nSuspeita");
+						break;
+					case 3,4:
+						System.out.print("\nCúmplice");
+						break;
+					case 5:
+						System.out.print("\nAssassino");
+						break;
+				}
 				break;
 			case 30:
-				
+				System.out.print("Informe os litros e o tipo [A-Álcool // G-Gasolina]: ");
+				float litros = input.nextFloat();
+				input.nextLine();
+				switch(input.nextLine().charAt(0)) {
+					default:
+						System.out.print("Tipo inválido");
+						break;
+					case 'A':
+						if (litros <= 20) {
+							System.out.print("O preço é: R$ "+ (litros*1.9*0.97));
+						}else {
+							System.out.print("O preço é: R$ "+ (litros*1.9*0.95));
+						}
+						break;
+					case 'G':
+						if (litros <= 20) {
+							System.out.print("O preço é: R$ "+ (litros*2.5*0.96));
+						}else {
+							System.out.print("O preço é: R$ "+ (litros*2.5*0.94));
+						}
+						break;
+				}
 				break;
 			case 31:
+				System.out.print("Informe os Kg de morango e maçã: ");
+				float kg_total = 0;
+				float rs_total = 0;
 				
+				// Morango
+				float kg = input.nextFloat();
+				if (kg <= 5) {
+					rs_total += kg * 2.5;
+				}else {
+					rs_total += kg * 2.2;
+				}
+				kg_total += kg;
+				
+				// Maçã
+				kg = input.nextFloat();
+				if (kg <= 5) {
+					rs_total += kg * 1.8;
+				}else {
+					rs_total += kg * 1.5;
+				}
+				kg_total += kg;
+				
+				if (kg_total >= 8 || rs_total >= 25) {
+					rs_total *= 0.9;
+				}
+				System.out.print("Preço final: R$ "+ rs_total);	
 				break;
 			case 32:
+				System.out.println("Informe o tipo (Filé Duplo, Alcatra ou Picanha [F/A/P]), os quilos, e se tem cartão [s/n]:");
+				float preco = 0;
+				String saida = "";
+				input.nextLine();
+				// Tipo da carne
+				switch(input.nextLine().charAt(0)) {
+					default:
+						System.out.print("Tipo inválido");
+						System.exit(0);
+					case 'F':
+						preco = 4.9f;
+						saida += "Filé Duplo // ";
+					case 'A':
+						preco = 5.9f;
+						saida += "Alcatra // ";
+					case 'P':
+						preco = 6.9f;
+						saida += "Picanha // ";
+				}
 				
+				// Quilos de carne
+				float quilos = input.nextFloat();
+				if (quilos >= 5) {
+					preco += 0.9f;
+				}
+				
+				preco *= quilos;
+				saida += quilos + " Kg\nPreço total: "+ preco +"\nUsando cartão?: ";
+				
+				// Cartão
+				input.nextLine();
+				if (input.nextLine().charAt(0) == 's') {
+					saida += "Sim\nDesconto 5%\nValor do Desconto: R$ "+ (preco * 0.05);
+					preco *= 0.95;
+					saida += "\nValor a pagar: R$" + preco;
+				}else {
+					saida += "Não\nDesconto: 0%\nValor do Desconto: R$ 0\nValor a pagar: R$ "+ preco;
+				}
+				System.out.print(saida);
 				break;
 			case 33:
-				
+				System.out.println("Informe o gabarito:");
+				String gabarito = "aabbccddee";
+				int resultado = 0;
+				String resultado_text = "";
+				input.nextLine();
+				for (int j = 0;j < gabarito.length();j++) {
+					char resposta = input.nextLine().charAt(0);
+					resultado_text += "\nQ"+ (j+1) +": ["+ resposta +"] -- ["+ gabarito.charAt(j) +"] // ";
+					if (resposta == gabarito.charAt(j)) {
+						resultado++;
+						resultado_text += "Correto";
+					}else {
+						resultado_text += "Incorreto";
+					}
+				}
+				resultado_text += "\n\nPontuação final: "+ resultado;
+				System.out.print(resultado_text);
 				break;
 		}
 		
