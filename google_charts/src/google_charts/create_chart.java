@@ -6,24 +6,22 @@ import java.io.FileWriter;
 
 public class create_chart {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
+	public static void main(String[] args) {		
         Scanner input = new Scanner(System.in);
         
+        // Quantity of points, max and min
         System.out.print("Informe a quantidade de pontos: ");
         int qn = input.nextInt();
-        System.out.println("num 1: " + qn);
-
         System.out.print("Informe o máximo: ");
         int max = input.nextInt();
-        System.out.println("num 1: " + max);
-
         System.out.print("Informe o mínimo: ");
         int min = input.nextInt();
-        System.out.println("num 1: " + min);
-        Random rand = new Random();
         
+        System.out.println("Quantidade: " + qn);
+        System.out.println("Máximo: " + max);
+        System.out.println("Mínimo: " + min);
+        
+        // If min > max
         if (min > max) {
 			System.out.println("Valores de início e fim invertidos");
 			int buffer = max;
@@ -31,6 +29,7 @@ public class create_chart {
 			min = buffer;
 		}
         
+        // Add the content
         String content = "<!DOCTYPE html>\r\n"
         		+ "<html lang=\"en\">\r\n"
         		+ "<head>\r\n"
@@ -43,12 +42,15 @@ public class create_chart {
         		+ "            var data = google.visualization.arrayToDataTable([\n"
         		+ "                 ['x','y']";
         
+        // Add random points
+        Random rand = new Random();
         for (int i = 0; i < qn; i++) {
         	int pog = (rand.nextInt(max-min) + min);
         	content += ",["+ i +","+ pog + "]";
         	System.out.println(pog);
         }
         
+        // Close the content
         content += "            ]);\n"
         		+ "\n"
         		+ "            var options= {\r\n"
@@ -69,10 +71,8 @@ public class create_chart {
         		+ "</body>\r\n"
         		+ "</html> ";
         
-        // file
+        // Create file
         String file_name = "chart.html";
-        
-        
         try {
         	FileWriter writer = new FileWriter(file_name);
         	
@@ -84,7 +84,6 @@ public class create_chart {
         	System.out.println("Erro na criação de arquivo: "+ e.getMessage());
         }
         
-        
+        input.close();
 	}
-
 }
