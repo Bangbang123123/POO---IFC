@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 public class exercícios {
 
@@ -317,7 +319,195 @@ public class exercícios {
 					System.out.print("\nEsse número não é primo.");
 				}
 				break;
-		
+			case 19:
+				System.out.print("Informe um número: ");
+				int p = input.nextInt();
+				List<Integer> prime_list = new ArrayList<Integer>();
+				
+				boolean is_prime;
+				int division_count = 0;
+				System.out.print("Primos entre 1 e "+ p +": ");
+				for (int i = 2; i <= p; i++) {
+					is_prime = true;
+					for (int divider : prime_list) {
+						division_count++;
+						if (i % divider == 0) {
+							is_prime = false;
+							break;
+						}
+					}
+					if (is_prime) {
+						prime_list.add(i);
+						System.out.print("["+ i +"]");
+					}
+				}	
+				System.out.print("\nQuantidade de divisões realizadas: "+ division_count);
+				break;
+			case 20:
+				System.out.print("Informe a quantidade de notas e seus valores: ");
+				int quantity = input.nextInt();
+				float media = 0;
+				for (int i = 0; i < quantity; i++) {
+					media += input.nextInt();
+				}
+				media /= quantity;
+				System.out.print("Média: "+ media);
+				break;
+			case 21:
+				System.out.print("Informe a quantidade de alunos e suas idades: ");
+				int alunos = input.nextInt();
+				float idades = 0;
+				for (int i = 0; i < alunos; i++) {
+					idades += input.nextInt();
+				}
+				idades /= alunos;
+				System.out.print("Média de idade: "+ idades +" // ");
+				if (idades <= 25) {
+					System.out.print("Turma jovem");
+				} else if (idades <= 60) {
+					System.out.print("Turma adulta");
+				} else {
+					System.out.print("Turma idosa");
+				}
+				
+				break;
+			case 22:
+				System.out.print("Informe a quantidade de votantes: ");
+				int votantes = input.nextInt();
+				int[] cand = {0,0,0};
+				for (int i = 0; i < votantes; i++) {
+					System.out.print("Informe seu voto [1,2,3]: ");
+					switch (input.nextInt()) {
+					default:
+						System.out.println("Inválido, não contabilizado");
+						break;
+					case 1:
+						cand[0]++;
+						break;
+					case 2:
+						cand[1]++;
+						break;
+					case 3:
+						cand[2]++;
+						break;
+					}
+				}
+				for (int i = 0; i < 3; i++) {
+					System.out.println("Candidato "+ (i+1) +": "+ cand[i] +" votos");
+				}
+				
+				break;
+			case 23:
+				System.out.print("Informe a quantidade de turmas e a quantidade de alunos em cada: ");
+				int turma = input.nextInt();
+				float aluno = 0;
+				int read;
+				for (int i = 0; i < turma; i++) {
+					do {
+						read = input.nextInt();
+						if (read <= 0 || read > 40) {
+							System.out.print("Inválido, precisa ser menor que 40 e não negativo\n");
+						}
+					} while (read <= 0 || read > 40);
+					aluno += read;
+				}
+				aluno /= turma;
+				System.out.print("Média de alunos por turma: "+ aluno);
+				break;
+			case 24:
+				System.out.print("Informe a quantidade de CDs e seus valores: ");
+				int discos = input.nextInt();
+				float preco_medio = 0;
+				for (int i = 0; i < discos; i++) {
+					preco_medio += input.nextInt();
+				}
+				System.out.print("Custo total: R$ "+ preco_medio +"\nCusto médio por disco: R$ "+ preco_medio/discos);
+				break;
+			case 25:
+				System.out.print("Lojas Quase Dois - Tabela de preços:");
+				for (int i = 1; i <= 50; i++) {
+					System.out.print("\n"+ i +" - R$ "+ (i*1.99));
+				}
+				break;
+			case 26:
+				System.out.print("Informe o preço do pão: ");
+				float pao = input.nextFloat();
+				System.out.print("Preço do pão: R$ "+ pao +"\nPanificadora Pão de Ontem - Tabela de preços");
+				for (int i = 1; i <= 50; i++) {
+					System.out.print("\n"+ i +" - R$ "+ (i*pao));
+				}
+				break;
+			case 27:
+				while (true) {
+					System.out.print("\nLojas Tabajara\n");
+					int produtos = 0;
+					float preco;
+					float total = 0;
+					do {
+						produtos++;
+						System.out.print("Produto "+ produtos +": R$ ");
+						preco = input.nextFloat();
+						total += preco;
+					} while (preco != 0);
+					System.out.println("Total: R$ "+ total);
+					float dinheiro;
+					do {
+						System.out.print("Dinheiro: R$ ");
+						dinheiro = input.nextFloat();
+						if (dinheiro < preco) {
+							System.out.println("Dinheiro insuficiente");
+						}
+					} while (dinheiro < preco);
+					System.out.println("Troco: R$ "+ (dinheiro - total));
+				}
+			case 28:
+				System.out.println("Informe as temperaturas (digite -999 para parar o programa):");
+				int quantidade = 0;
+				float temp_media = 0;
+				float temp = input.nextInt();
+				float maior_temp = temp;
+				float menor_temp = temp;
+				while (temp != -999) {
+					quantidade++;
+					temp_media += temp;
+					if (temp > maior_temp) {
+						maior_temp = temp;
+					} else if (temp < menor_temp) {
+						menor_temp = temp;
+					}
+					temp = input.nextInt();
+					
+				}
+				if (quantidade > 0) {
+					System.out.print("Maior temperatura: "+ maior_temp
+								+ "\nMenor temperatura: "+ menor_temp
+								+ "\nTemperatura média: "+ temp_media/quantidade);
+				} else {
+					System.out.print("Sem temperaturas");
+				}
+				break;
+			case 29:
+				System.out.print("Montar tabuada de: ");
+				int tab = input.nextInt();
+				System.out.print("Começar em: ");
+				int inicio = input.nextInt();
+				System.out.print("Terminar em: ");
+				int fim = input.nextInt();
+				if (fim < inicio) {
+					int buffer = inicio;
+					inicio = fim;
+					fim = buffer;
+					System.out.println("Valores invertidos");
+				}
+				System.out.println("\nVou montar a tabuada de "+ tab +" começando de "+ inicio +" e terminando em "+ fim +":");
+				for (int i = inicio; i <= fim; i++) {
+					System.out.println(tab +" x "+ i +" = "+ (tab*i));
+				}
+				
+				break;
+			case 30:
+				
+				break;
 		
 		
 		}
