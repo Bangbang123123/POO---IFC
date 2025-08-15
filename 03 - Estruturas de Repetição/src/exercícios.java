@@ -506,9 +506,193 @@ public class exercícios {
 				
 				break;
 			case 30:
+				List<Integer> codigo = new ArrayList<Integer>();
+				List<Float> alturas = new ArrayList<Float>();
+				List<Float> pesos = new ArrayList<Float>();
+				
+				int alto = 0;
+				int baixo = 0;
+				int gordo = 0;
+				int magro = 0;
+				int count_ = 0;
+				float media_alt = 0;
+				float media_peso = 0;
+				do {
+					System.out.print("Informe um código: ");
+					codigo.add(input.nextInt());
+					if (codigo.get(count_) == 0) {
+						break;
+					}
+					System.out.print("Informe a altura: ");
+					alturas.add(input.nextFloat());
+					System.out.print("Informe o peso: ");
+					pesos.add(input.nextFloat());
+					
+					// Get the highest and lowest
+					if (alturas.get(count_) >= alturas.get(alto)) {
+						alto = count_;
+					}
+					if (alturas.get(count_) <= alturas.get(baixo)) {
+						baixo = count_;
+					} 
+					if (pesos.get(count_) >= pesos.get(gordo)) {
+						gordo = count_;
+					}
+					if (pesos.get(count_) <= pesos.get(magro)) {
+						magro = count_;
+					}
+					
+					//  Get averages
+					media_alt += alturas.get(count_);
+					media_peso +=  pesos.get(count_);
+					
+					count_++;
+				} while (true);
+				// Calculate averages
+				media_alt /= count_;
+				media_peso /= count_;
+				
+				if (count_ != 0) {
+					System.out.print("\n-- Mais alto --"
+								+"\nAltura: "+ alturas.get(alto)
+								+"\nPeso: "+ pesos.get(alto)
+								+"\nCódigo: "+ codigo.get(alto)
+								+"\n\n\n-- Mais baixo --\n"
+								+"\nAltura: "+ alturas.get(baixo)
+								+"\nPeso: "+ pesos.get(baixo)
+								+"\nCódigo: "+ codigo.get(baixo)
+								+"\n\n\n-- Mais gordo --\n"
+								+"\nAltura: "+ alturas.get(gordo)
+								+"\nPeso: "+ pesos.get(gordo)
+								+"\nCódigo: "+ codigo.get(gordo)
+								+"\n\n\n-- Mais magro --\n"
+								+"\nAltura: "+ alturas.get(magro)
+								+"\nPeso: "+ pesos.get(magro)
+								+"\nCódigo: "+ codigo.get(magro)
+								+"\n\nMédia de altura: "+ media_alt
+								+"\nMédia de peso: "+ media_peso
+								);
+				} else {
+					System.out.print("Nenhum membro informado");
+				}
+				break;
+			case 31:
+				int[] aluno_n = new int[10];
+				float[] alt = new float[10];
+				int maior_ = 0;
+				int menor_ = 0;
+				
+				for (int i = 0; i < 10; i++) {
+					System.out.print("Informe o número: ");
+					aluno_n[i] = input.nextInt();
+					System.out.print("Informe a altura: ");
+					alt[i] = input.nextFloat();
+					
+					if (alt[i] > alt[maior_]) {
+						maior_ = i;
+					}
+					if (alt[i] < alt[menor_]) {
+						menor_ = i;
+					}
+				}
+				System.out.print("\n-- Mais alto --"
+								+ "\nNúmero: "+ aluno_n[maior_]
+								+ "\nAltura: "+ alt[maior_]
+								+ "\n\n-- Mais baixo --"
+								+ "\nNúmero: "+ aluno_n[menor_]
+								+ "\nAltura: "+ alt[menor_]
+								);
+				break;
+			case 32:
+				int[] cod_cid = new int[5];
+				int[] veiculos = new int[5];
+				int[] acidentes = new int[5];
+				
+				int indice_maior = 0;
+				int indice_menor = 0;
+				float media_veiculos = 0;
+				float media_acidentes = 0;
+				int acidente = 0;
+				for (int i = 0; i < 5; i++) {
+					System.out.print("Informe um código: ");
+					cod_cid[i] = input.nextInt();
+					System.out.print("Informe a quantidade de veículos: ");
+					veiculos[i] = input.nextInt();
+					System.out.print("Informe a quantidade de acidentes: ");
+					acidentes[i] = input.nextInt();
+					
+					// Get the highest and lowest
+					if (acidentes[i] > acidentes[indice_maior]) {
+						indice_maior = i;
+					}
+					if (acidentes[i] < acidentes[indice_menor]) {
+						indice_menor = i;
+					} 
+					
+					//  Get averages
+					media_veiculos += veiculos[i];
+					if (veiculos[i] <= 2000) {
+						media_acidentes += acidentes[i];
+						acidente++;
+					}
+				}
+				media_veiculos /= 5;
+				if (acidente != 0) {
+					media_acidentes /= acidente;
+				}
+				System.out.print("\n-- Maior índice --"
+							+ "\nCódigo: "+ cod_cid[indice_maior]
+							+ "\nAcidentes: "+ acidentes[indice_maior]
+							+ "\n\n-- Menor índice --"
+							+ "\nCódigo: "+ cod_cid[indice_menor]
+							+ "\nAcidentes: "+ acidentes[indice_menor]
+							+ "\n\nMédia de veículos: "+ media_veiculos
+							+ "\nMédia de acidentes (cidades com menos de 2000 veículos de passeio): "+ media_acidentes
+							);
+				break;
+			case 33:
+				do {
+					System.out.print("Informe o valor total: ");
+					float divida = input.nextFloat();
+					System.out.print("Informe a quantidade de parcelas [1,3,6,9,12]: ");
+					int qnt = input.nextInt();
+					float parcela = 0;
+					switch (qnt) {
+					default:
+						System.out.println("Número inválido");
+						break;
+					case 1:
+						parcela = divida;
+						break;
+					case 3:
+						parcela = divida * 1.1f / 3;
+						break;
+					case 6:
+						parcela = divida * 1.15f / 6;
+						break;
+					case 9:
+						parcela = divida * 1.2f / 9;
+						break;
+					case 12:
+						parcela = divida * 1.25f / 12;
+						break;
+					}
+					if (parcela != 0 && divida != 0) {
+						System.out.println("\nDívida: R$ "+ divida +" // Parcelas: "+ qnt +" // Valor da parcela: R$ "+ parcela);
+					}
+				} while (true);
+			case 34:
 				
 				break;
-		
+			case 35:
+				
+				break;
+			case 36:
+				
+				break;
+			case 37:
+				
+				break;
 		
 		}
 		
