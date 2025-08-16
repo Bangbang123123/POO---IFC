@@ -6,7 +6,7 @@ public class exercícios {
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
-		System.out.print("Escolha um exercício [1-37]: ");
+		System.out.print("Escolha um exercício [1-38]: ");
 		switch(input.nextInt()) {
 			default:
 				System.out.print("Número inválido");
@@ -333,6 +333,9 @@ public class exercícios {
 						division_count++;
 						if (i % divider == 0) {
 							is_prime = false;
+							break;
+						}
+						if (divider > Math.sqrt(i)) {
 							break;
 						}
 					}
@@ -682,30 +685,165 @@ public class exercícios {
 					}
 				} while (true);
 			case 34:
-				
+				int interval1 = 0;
+				int interval2 = 0;
+				int interval3 = 0;
+				int interval4 = 0;
+				int number;
+				do {
+					// [0-25], [26-50], [51-75] e [76-100].
+					System.out.print("Informe um número: ");
+					number = input.nextInt();
+					if (number <= 25) {
+						interval1++;
+					} else if (number <= 50) {
+						interval2++;
+					} else if (number <= 75) {
+						interval3++;
+					} else if (number <= 100) {
+						interval4++;
+					}			
+				} while (number >= 0);
+				System.out.print("\n-- Intervalos dos números informados --"
+						+ "\n[0-25]: "+ interval1
+						+ "\n[26-50]: "+ interval2
+						+ "\n[51-75]: "+ interval3
+						+ "\n[76-100]: "+ interval4);
 				break;
 			case 35:
+				System.out.print("Especificação   Código   Preço\r\n"
+							+ "Cachorro Quente    100 R$ 1,20\n"
+							+ "Bauru Simples      101   R$ 1,30\n"
+							+ "Bauru com ovo      102   R$ 1,50\n"
+							+ "Hambúrguer         103   R$ 1,20\n"
+							+ "Cheeseburguer      104   R$ 1,30\n"
+							+ "Refrigerante       105   R$ 1,00\n"
+							+ "Finalizar compra     0\n\n\n");
+				
+				int pedido;
+				int qnt;
+				float preco = 0;
+				do {
+					System.out.print("Informe um produto (código) e sua quantidade: ");
+					pedido = input.nextInt();
+					qnt = input.nextInt();
+					switch (pedido) {
+					default:
+						System.out.print("Produto inválido");
+						break;
+					case 0:
+						System.out.println("Finalizando pedido");
+						break;
+					case 100:
+						preco += 1.2 * qnt;
+						System.out.println("Produto: Cachorro Quente // Quantidade: "+ qnt +" // Preço: R$ "+ (1.2 * qnt));
+						break;
+					case 101:
+						preco += 1.3 * qnt;
+						System.out.println("Produto: Bauru Simples // Quantidade: "+ qnt +" // Preço: R$ "+ (1.3 * qnt));
+						break;
+					case 102:
+						preco += 1.5 * qnt;
+						System.out.println("Produto: Bauru com Ovo // Quantidade: "+ qnt +" // Preço: R$ "+ (1.5 * qnt));
+						break;
+					case 103:
+						preco += 1.2 * qnt;
+						System.out.println("Produto: Hambúrguer // Quantidade: "+ qnt +" // Preço: R$ "+ (1.2 * qnt));
+						break;
+					case 104:
+						preco += 1.3 * qnt;
+						System.out.println("Produto: Cheeseburguer // Quantidade: "+ qnt +" // Preço: R$ "+ (1.3 * qnt));
+						break;
+					case 105:
+						preco += qnt;
+						System.out.println("Produto: Refrigerante // Quantidade: "+ qnt +" // Preço: R$ "+ (1.0f * qnt));
+						break;
+					}
+				} while (pedido != 0);
+				System.out.print("Total da compra: R$ "+ preco);
 				
 				break;
 			case 36:
 				
+				int[] votos = {0,0,0,0,0,0};
+				int voto;
+				System.out.print("Candidatos: João, José, Maria, Ana");
+				do {
+					System.out.print("Informe seu voto [1,2,3,4 - candidato] 5 - nulo // 6 - branco]: ");
+					voto = input.nextInt();
+					if (voto < 1 || voto > 6) {
+						System.out.println("Voto não contabilizado\n");
+					} else {
+						votos[voto-1]++;
+					}
+				} while (voto != 0);
+				int total_voto = votos[0] + votos[1] + votos[2] + votos[3] + votos[4] + votos[5];
+				if (total_voto != 0) {
+					System.out.print("\nCandidato João: "+ votos[0]
+									+ "\nCandidato José: "+ votos[1]
+									+ "\nCandidata Maria: "+ votos[2]
+									+ "\nCandidata Ana: "+ votos[3]
+									+ "\nNulos: "+ votos[4] +" ["+ ((votos[4]*100f)/total_voto) +" %]"
+									+ "\nBrancos: "+ votos[5] +" ["+ ((votos[5]*100f)/total_voto) +" %]"
+									);
+				} else {
+					System.out.print("Sem votos");
+				}
 				break;
 			case 37:
+				System.out.print("[Professor] Informe o gabarito: ");
+				input.nextLine();
+				String gabarito = input.nextLine();
+				String resposta;
+				int maior_acerto = 0;
+				int menor_acerto = gabarito.length() + 1;
+				int media_acerto = 0;
+				int acerto = 0;
+				int total_alunos = 0;
+				do {
+					System.out.print("[Aluno] Informe o gabarito inteiro (finalize tudo com 'sair'): ");
+					resposta = input.nextLine();
+					if (resposta.length() != gabarito.length()) {
+						System.out.println("Resposta não contabilizada");
+					} else {
+						total_alunos++;
+						for (int i = 0; i < gabarito.length(); i++) {
+							if (resposta.charAt(i) == gabarito.charAt(i)) {
+								acerto++;
+							}
+						}
+						if (maior_acerto < acerto) {
+							maior_acerto = acerto;
+						}
+						if (menor_acerto > acerto) {
+							menor_acerto = acerto;
+						}
+						media_acerto += acerto;
+					}
+					acerto = 0;
+				} while (! resposta.equals("sair"));
+				if (total_alunos != 0) {
+					media_acerto /= total_alunos;
+					System.out.print("\nMaior Acerto: "+ maior_acerto 
+							+"\nMenor Acerto: "+ menor_acerto
+							+ "\nTotal de Alunos: "+ total_alunos
+							+ "\nMédia das Notas: "+ media_acerto);
+				} else {
+					System.out.print("\nSem respostas computadas");
+				}
+			
+				break;
+			case 38:
+				System.out.print("Informe um número: ");
+				input.nextLine();
+				String number_ = input.nextLine();
+				System.out.print("Número invertido: ");
+				for (int i = number_.length()-1; i >= 0; i--) {
+					System.out.print(number_.charAt(i));
+				}
 				
 				break;
-		
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		input.close();
 	}
-
 }
