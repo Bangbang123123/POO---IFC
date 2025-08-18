@@ -330,12 +330,12 @@ public class exercícios {
 				for (int i = 2; i <= p; i++) {
 					is_prime = true;
 					for (int divider : prime_list) {
+						if (divider > Math.sqrt(i)) {
+							break;
+						}
 						division_count++;
 						if (i % divider == 0) {
 							is_prime = false;
-							break;
-						}
-						if (divider > Math.sqrt(i)) {
 							break;
 						}
 					}
