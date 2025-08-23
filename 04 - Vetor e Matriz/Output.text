@@ -1,0 +1,23 @@
+Informe um tamanho de matriz ímpar entre 3 e 11: 3
+Informe o [0-0]: 1
+Informe o [0-1]: 2
+Informe o [0-2]: 3
+Informe o [1-0]: 4
+Informe o [1-1]: 5
+Informe o [1-2]: 6
+Informe o [2-0]: 7
+Informe o [2-1]: 8
+Informe o [2-2]: 9
+
+• Soma dos elementos: 45
+• Média dos elementos: 5.0
+• Maior valor: 9
+• Menor valor: 1
+• Contador de pares: 4
+• Contador de ímpares: 5
+• Soma da diagonal principal: 15
+• Soma da diagonal secundária: 15
+Matriz:
+[1][2][3]
+[4][5][6]
+[7][8][9]
