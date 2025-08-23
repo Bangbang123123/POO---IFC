@@ -1,4 +1,10 @@
 import java.util.Scanner;
+import java.awt.Desktop;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Random;
 
 public class exercicios {
@@ -645,11 +651,49 @@ public class exercicios {
 				}
 				System.out.print(" - Acertos: "+ acertos +"\n\n");
 			}
-			
-			
 			break;
-			
 		}
 		input.close();
 	}
+	
+	
+	
+	
+	
+	public String[] readFile(String caminho) {
+		try (BufferedReader br = new BufferedReader(new FileReader(caminho))) {
+            String linha;
+            String conteudo = "";
+            while ((linha = br.readLine()) != null) {
+                conteudo += linha + "/";
+            }
+            
+            return conteudo.split("/");
+		} catch (IOException e) {
+            System.out.println("Erro ao ler o arquivo: " + e.getMessage());
+            return new String[0];
+        }
+	}      
+		
+	public void writeFile(String conteudo) {
+		File caminhoArquivo = new File("Output.text");
+
+        try (FileWriter writer = new FileWriter(caminhoArquivo, false)) {
+            writer.write(conteudo);
+            System.out.println("Arquivo criado com sucesso!");
+
+            if (caminhoArquivo.exists()) {
+                if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) { 
+                    Desktop.getDesktop().browse(caminhoArquivo.toURI());
+                } else {
+                    System.out.println("Ação BROWSE não é suportada neste ambiente.");
+                }
+            } else {
+                System.out.println("Arquivo HTML não encontrado.");
+            }
+        } catch (IOException e) {
+            System.out.println("Ocorreu um erro ao criar/abrir o arquivo: " + e.getMessage());
+        }
+	}
+       
 }
