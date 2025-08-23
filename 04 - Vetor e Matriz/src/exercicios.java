@@ -4,7 +4,7 @@ import java.util.Random;
 public class exercicios {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
-		System.out.print("Escolha um exercício [1-38]: ");
+		System.out.print("Escolha um exercício [1-20]: ");
 		switch(input.nextInt()) {
 		default:
 			System.out.print("Número inválido");
@@ -239,9 +239,10 @@ public class exercicios {
 							+"\nMais velho: Altura: "+ alt[velho] +" // Idade: "+ idade[velho]
 							+"\nMais novo: Altura: "+ alt[novo] +" // Idade: "+ idade[novo]
 							+"\nVetor: ");
-			for (int i = 0; i < 5; i++) {
+			for (int i = 4; i >= 0; i--) {
 				System.out.print("[Altura: "+ alt[i] +"// Idade: "+ idade[i] +"] ");
 			}
+			
 			System.out.print("\nAcima da média (altura): ");
 			for (int i = 0; i < 5; i++) {
 				if (alt[i] > med_alt)
@@ -317,14 +318,14 @@ public class exercicios {
 			final int N = 5;
 			int[] vetor = new int[N];
 			
-			int i = 0;
-			while (i < N) {
-				System.out.print("Informe o "+ (i+1) +"° número [0-20]: ");
-				vetor[i] = input.nextInt();
-				if (vetor[i] < 0 || vetor[i] > 20) {
+			int w = 0;
+			while (w < N) {
+				System.out.print("Informe o "+ (w+1) +"° número [0-20]: ");
+				vetor[w] = input.nextInt();
+				if (vetor[w] < 0 || vetor[w] > 20) {
 					System.out.print("\nInválido, somente entre [0-20]\n\n");
 				} else {
-					i++;
+					w++;
 				}
 			}
 			
@@ -337,6 +338,317 @@ public class exercicios {
 			}
 			
 			break;
+		case 16: // 2-1
+			int T;
+			do {
+				System.out.print("Informe um tamanho de matriz ímpar entre 3 e 11: ");
+				T = input.nextInt();
+				if (T % 2 == 0) {
+					System.out.print("Tente de novo\n");
+				}
+			} while (T % 2 == 0 || T < 3 || T > 11);
+			
+			int[][] matrix = new int[T][T];
+			
+			int soma = 0;
+			int max_i = 0;
+			int max_j = 0;
+			int min_i = 0;
+			int min_j = 0;
+			int par = 0;
+			int diag_p = 0;
+			int diag_s = 0;
+			
+			for (int i = 0; i < T; i++) {
+				for (int j = 0; j < T; j++) {
+					System.out.print("Informe o ["+ i +"-"+ j +"]: ");
+					matrix[i][j] = input.nextInt();
+					soma += matrix[i][j];
+					if (matrix[i][j] > matrix[max_i][max_j]) {
+						max_i = i;
+						max_j = j;
+					} else if (matrix[i][j] < matrix[min_i][min_j]) {
+						min_i = i;
+						min_j = j;
+					}
+					if (matrix[i][j] % 2 == 0) {
+						par++;
+					}
+					if (i == j) {
+						diag_p += matrix[i][j];
+					}
+					if (i == (T-j-1)) {
+						diag_s += matrix[i][j];
+					}
+				}
+			}
+			
+			System.out.print("\n• Soma dos elementos: "+ soma
+							+"\n• Média dos elementos: %.2f%n"+ Math.round((soma*100.0)/(T*T))/100.0
+							+"\n• Maior valor: "+ (matrix[max_i][max_j])
+							+"\n• Menor valor: "+ (matrix[min_i][min_j])
+							+"\n• Contador de pares: "+ par
+							+"\n• Contador de ímpares: "+ (T*T - par)
+							+"\n• Soma da diagonal principal: "+ diag_p
+							+"\n• Soma da diagonal secundária: "+ diag_s);
+			
+			System.out.print("\nMatriz:");
+			for (int i = 0; i < T; i++) {
+				System.out.print("\n");
+				for (int j = 0; j < T; j++) {
+					System.out.print("["+ matrix[i][j] +"]");
+				}
+			}
+			break;
+		case 17: // 2-2
+			float[][] sup_prod = new float[5][5];
+			float soma_max = 0;
+			float soma_min = 0;
+			float[] media_p = new float[5];
+			
+			for (int i = 0; i < 5; i++) {
+				System.out.println("Supermercado ["+ (i+1) +"]:");
+				
+				for (int j = 0; j < 5; j++) {
+					System.out.print("Informe o Produto "+ (j+1) +": ");
+					sup_prod[i][j] = input.nextFloat();
+				}
+			}
+			
+			System.out.print("\nTabela supermercado\\produto:");
+			for (int i = 0; i < 5; i++) {
+				System.out.print("\n");
+				int soma_ = 0;
+				for (int j = 0; j < 5; j++) {
+					System.out.print("["+ sup_prod[i][j] +"] ");
+					media_p[j] += sup_prod[i][j]/5.0;
+					soma_ += sup_prod[i][j];
+				}
+				if (soma_max < soma_ || i == 0) {
+					soma_max = soma_;
+				} else if (soma_min < soma_ || i == 0) {
+					soma_min = soma_;
+				}
+				System.out.print(" // Valor total: R$ "+ soma_);
+			}
+			
+			System.out.print("\n• A média de preço por produto: R$ ");
+			for (int j = 0; j < 5; j++) {
+				System.out.print("["+ media_p[j] +"] ");
+			}
+			
+			System.out.print("\n• Valor total mais barato: R$ "+ soma_min
+							+"\n• Valor total mais caro: R$ "+ soma_max);
+			break;
+		case 18: // 2-3
+			System.out.print("Informe o número de alunos da turma: ");
+	        int ALUNOS = input.nextInt();
+	        
+	        String[] nome = new String[ALUNOS];
+	        float[][] nota = new float[ALUNOS][2];
+	        float[] media = new float[ALUNOS];
+	        
+	        float media_total = 0;
+	        int max_notai = 0;
+	        int max_notaj = 0;
+	        int min_notai = 0;
+	        int min_notaj = 0;
+	        
+	        int max_media = 0;
+	        int min_media = 0;
+	        
+	        for (int i = 0; i < ALUNOS; i++) {
+	        	input.nextLine();
+	            System.out.println("\nAluno ["+ (i+1) +"]:");
+	            
+	            System.out.print("Nome: ");
+	            nome[i] = input.nextLine();
+	            
+	            for (int j = 0; j < 2; j++) {
+	                System.out.print("Nota "+ (j+1) +": ");
+	                nota[i][j] = input.nextFloat();
+	                
+                    if (nota[i][j] > nota[max_notai][max_notaj]) {
+                        max_notai = i;
+                        max_notaj = j;
+                    }
+                    if (nota[i][j] < nota[min_notai][min_notaj]) {
+                    	min_notai = i;
+                        min_notaj = j;
+                    }
+	            }
+	            
+	            media[i] = (nota[i][0] + nota[i][1]) / 2.0f;
+	            media_total += media[i];
+	            
+	            if (media[i] > media[max_media]) {
+	                    max_media = i;
+	                }
+                if (media[i] < media[min_media]) {
+                    min_media = i;
+                }
+	        }
+	        
+	        media_total /= ALUNOS;
+	        
+	        for (int i = 0; i < ALUNOS; i++) {
+	            System.out.print("\n\nAluno: " + nome[i]
+	            				+"\nNota 1: " + nota[i][0]
+	            				+"\nNota 2: " + nota[i][1]
+	            				+"\nMédia : " + media[i]);
+	        }
+	        
+	        System.out.print("\n• Maior nota: "+ nota[max_notai][max_notaj] +" // Aluno: "+ nome[max_notai]
+					        +"\n• Menor nota: "+ nota[min_notai][min_notaj] +" // Aluno: "+ nome[min_notai]
+					        +"\n• Maior média: "+ media[max_media] +" // Aluno: "+ nome[max_media]
+					        +"\n• Maior média: "+ media[min_media] +" // Aluno: "+ nome[min_media]
+					        +"\n• Média geral da turma: " + media_total);
+					        
+	        System.out.print("\n• Alunos acima da média geral:");
+	        for (int i = 0; i < ALUNOS; i++) {
+	            if (media[i] > media_total) {
+	                System.out.println("\n"+ nome[i] + " // Média: "+ media[i]);
+	            }
+	        }
+	        
+	        System.out.print("\n• Alunos abaixo da média geral:");
+	        for (int i = 0; i < ALUNOS; i++) {
+	            if (media[i] < media_total) {
+	                System.out.println("\n"+ nome[i] + " // Média: "+ media[i]);
+	            }
+	        }
+			break;
+		case 19: // 2-4
+		    System.out.print("Informe o número de atletas: ");
+		    int N_atletas = input.nextInt();
+		    
+		    String[] atletas = new String[N_atletas];
+		    float[][] saltos = new float[N_atletas][5];
+		    float[] saltosM = new float[N_atletas];
+		    
+		    int campeao = 0;
+		    int ultimo = 0;
+		    
+		    for (int i = 0; i < N_atletas; i++) {
+		        input.nextLine();
+		        System.out.print("\nAtleta [" + (i+1) + "]:\nNome: ");
+		        atletas[i] = input.nextLine();
+		        
+		        int menor_salto = 0;
+		        for (int j = 0; j < 5; j++) {
+		            System.out.print("Salto " + (j+1) + ": ");
+		            saltos[i][j] = input.nextFloat();
+		            
+		            saltosM[i] += saltos[i][j];
+		            
+		            if (saltos[i][j] < saltos[i][menor_salto]) {
+		                menor_salto = j;
+		            }
+		        }
+		        
+		        saltosM[i] = (saltosM[i] - saltos[i][menor_salto]) / 4;
+		        
+		        if (saltosM[i] > saltosM[campeao]) {
+		            campeao = i;
+		        }
+		        if (saltosM[i] < saltosM[ultimo]) {
+		            ultimo = i;
+		        }
+		    }
+		    
+		    
+		    for (int i = 0; i < N_atletas; i++) {
+		        System.out.print("\n• Atleta: "+ atletas[i] +" -- Saltos: ");
+		        for (int j = 0; j < 5; j++) {
+		            System.out.print("[" + saltos[i][j] + "] ");
+		        }
+		        System.out.println("\nMédia final: "+ saltosM[i] +"\n");
+		    }
+		    
+		    
+		    System.out.print("\n\n• Campeão: "+ atletas[campeao] +" // Média: " + saltosM[campeao]
+		    				+"\n• Último lugar: "+ atletas[ultimo] +" // Média: " + saltosM[ultimo]);
+		    break;
+		case 20: // 2-5
+			System.out.print("Informe um número de cartelas: ");
+			int count = input.nextInt();
+			
+			int[][] cartelas = new int[count][6];
+			Random random = new Random();
+			for (int f = 0; f < count; f++) {
+				for (int i = 0; i < 6; i++) {
+					cartelas[f][i] = random.nextInt(59)+1;
+					boolean again = false;
+					for (int j = 0; j < i; j++) {
+						if (cartelas[f][i] == cartelas[f][j]) {
+							again = true;
+							break;
+						}
+					}
+					if (again) {
+						i--;
+					}
+				}
+				
+				boolean sorted = false;
+				while (!sorted) {
+					sorted = true;
+					for (int i = 0; i < 5; i++) {
+						if (cartelas[f][i] > cartelas[f][i+1]) {
+							sorted = false;
+							int buffer = cartelas[f][i];
+							cartelas[f][i] = cartelas[f][i+1];
+							cartelas[f][i+1] = buffer;
+						}
+					}
+				}
+			}
+			
+			System.out.print("\n- Coloque as cartelas em ordem decrescente -");
+			int[][] respostas = new int[count][6];
+			for (int i = 0; i < count; i++) {
+				System.out.print("\nCartela "+ i +":\n");
+				for (int j = 0; j < 6; j++) {
+					do {
+						System.out.print(j +": ");
+						respostas[i][j] = input.nextInt();
+						if ((respostas[i][j] < 1 || respostas[i][j] > 60) || (j != 0 && respostas[i][j-1] >= respostas[i][j])) {
+							System.out.print("Inválido, deve estar nesse intervalo [1-60] em ordem crescente\n");
+						}
+					} while ((respostas[i][j] < 1 || respostas[i][j] > 60) || (j != 0 && respostas[i][j-1] >= respostas[i][j]));
+				}
+			}
+			
+			
+			for (int i = 0; i < count; i++) {
+				for (int l = 0; l < 6; l++) {
+					System.out.print("["+ cartelas[i][l] +"]");
+				}
+				System.out.println();
+				for (int l = 0; l < 6; l++) {
+					System.out.print("["+ respostas[i][l] +"]");
+				}
+				
+				int j = 0;
+				int k = 0;
+				int acertos = 0;
+				while (j < 6 && k < 6) {
+					if (cartelas[i][j] == respostas[i][k]) {
+						j++;
+						k++;
+						acertos++;
+					} else if (cartelas[i][j] > respostas[i][k]) {
+						k++;
+					} else {
+						j++;
+					}
+				}
+				System.out.print(" - Acertos: "+ acertos +"\n\n");
+			}
+			
+			
+			break;
+			
 		}
 		input.close();
 	}
