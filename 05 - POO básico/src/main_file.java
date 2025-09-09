@@ -79,39 +79,38 @@ public class main_file {
 			System.out.print("Total da compra: R$ "+ tabela.getTotal());
 			
 			break;
-		case 6:
-			Quadrado q = new Quadrado();
-	        
-			System.out.print("Informe um lado: ");
-			q.setLado(input.nextDouble());
-			
-	        System.out.print("\nLado: " + q.getLado()
-	        				+"\nÁrea: " + q.calcularArea());
-			
-			break;
-		case 7:
-			Pessoa person = new Pessoa();
-			
-			input.nextLine();
-			System.out.print("Digite o nome, a idade, o peso (Kg) e a altura (m): ");
-			person.setNome(input.nextLine());
-			person.setIdade(input.nextInt());
-			person.setPeso(input.nextDouble());
-			person.setAltura(input.nextDouble());
-
-	        System.out.print("\nDados da pessoa:"
-	        				+"\nNome: " + person.getNome()
-	        				+"\nIdade: " + person.getIdade()
-	        				+"\nPeso: " + person.getPeso() + " kg"
-	        				+"\nAltura: " + person.getAltura() + " m");
-
-			break;
-		case 8:
-			break;
 		case 10:
-			break;
-		case 11:
-			break;
+			Televisao tv = new Televisao();
+			input.nextLine();
+			while (true) {
+				System.out.print("\n\nO que fazer (mudar canal - (c) // aumentar volume - (+) // diminuir volume - (-))?");
+				switch (input.nextLine().charAt(0)) {
+				default:
+					System.out.print("Input errado, tente de novo\n\n");
+					break;
+				case 'c':
+					System.out.print("Qual canal? ");
+					tv.setAtual(input.nextInt());
+					input.nextLine();
+					System.out.print("Canal: "+ tv.getAtual());
+					break;
+				case '+':
+					tv.aumentarVolume(5);
+					System.out.print("Volume: ["+ tv.getVolume() +"] ");
+					for (int i = 0; i < tv.getVolume()/10; i++) {
+						System.out.print("#");
+					}
+					break;
+				case '-':
+					tv.diminuirVolume(5);
+					System.out.print("Volume: ["+ tv.getVolume() +"] ");
+					for (int i = 0; i < tv.getVolume()/10; i++) {
+						System.out.print("#");
+					}
+					break;
+				}
+			}
+
 		}
 		input.close();
 	}
