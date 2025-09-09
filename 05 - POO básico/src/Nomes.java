@@ -3,6 +3,16 @@ public class Nomes {
 	private String nome = "";
 	private String sobrenome = "";
 	
+	public Nomes() {}
+	public Nomes(String nome,String sobrenome) {
+		setNome(nome);
+		setSobrenome(sobrenome);
+	}
+	public Nomes(String nome) {
+		setNome(nome);
+		setSobrenome(nome);
+	}
+	
 	public String juntar() {
 		return nome+" "+sobrenome;
 	}
@@ -20,7 +30,4 @@ public class Nomes {
 	public void setSobrenome(String sobrenome) {
 		this.sobrenome = sobrenome;
 	}
-	
-	
-	
 }

@@ -3,6 +3,17 @@ public class Intervalo {
 	private int n1 = 0;
 	private int n2 = 0;
 	
+	public Intervalo() {}
+	public Intervalo(int n1, int n2) {
+		setN1(n1);
+		setN2(n2);
+	}
+	public Intervalo(int n1) {
+		setN1(n1);
+		setN2(n1 + 10);
+	}
+	
+	
 	public int getN1() {
 		return n1;
 	}

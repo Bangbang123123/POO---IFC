@@ -1,26 +1,19 @@
-import java.util.Scanner;
 
 public class teste {
-
+	
 	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);
-		System.out.println("Informe a base, o número de início e fim de uma tabuada: ");
-		int base = input.nextInt();
-		int begin = input.nextInt();
-		int end = input.nextInt();
+		Familia.setSobrenome("Curvêllo");
 		
-		if (begin >= end) {
-			System.out.println("Valores de início e fim invertidos");
-			int buffer = end;
-			end = begin;
-			begin = buffer;
-		}
+		Familia rodrigo = new Familia();
+		rodrigo.setNome("Rodrigo");
 		
-		for (int i = begin; i <= end; i++) {
-			System.out.println(base +" * "+ i +" = "+ (base*i));
-		}
+		Familia iran = new Familia();
+		iran.setNome("Iran");
 		
-		input.close();
+		System.out.print(rodrigo.getNome() + " " + Familia.getSobrenome()
+						+ "\n" + iran.getNome() + " " + Familia.getSobrenome());
+		
+		System.out.print("\nTeste conta: "+ Conta.soma(20,40));
 	}
-
+	
 }

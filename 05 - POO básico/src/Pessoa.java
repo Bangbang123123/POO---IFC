@@ -4,6 +4,21 @@ public class Pessoa {
     private int idade;
     private double peso;
     private double altura;
+    
+    public Pessoa() {}
+    public Pessoa(String nome, int idade, double peso, double altura) {
+    	setNome(nome);
+    	setIdade(idade);
+    	setPeso(peso);
+    	setAltura(altura);
+    }
+    public Pessoa(String nome) {
+    	setNome(nome);
+    	setIdade(30);
+    	setPeso(74);
+    	setAltura(1.8);
+    }
+    
 
     public String getNome() {
 		return nome;
@@ -32,10 +47,15 @@ public class Pessoa {
 	
 	
 	public void envelhecer(double anos) {
-        if (idade + anos > 21) {
-            crescer((idade + anos - 21) * 0.005);
-        }
-        idade += anos;
+        if (idade >= 21) {
+        	idade += anos;
+        } else if (idade + anos >= 21) {
+        	crescer((21 - idade) * 0.005);
+        	idade += anos;
+        } else {
+        	idade += anos;
+        	crescer(anos * 0.005);
+        }  
     }
     public void engordar(double quilos) {
         peso += quilos;

@@ -2,11 +2,17 @@
 public class Quadrado {
     private double lado;
     
+    public Quadrado() {}
+    public Quadrado(double lado) {
+    	setLado(lado);
+    }
+    
+    
     public void setLado(double lado) {
         this.lado = lado;
     }
     public double getLado() {
-        return this.lado;
+        return lado;
     }
 
     public double calcularArea() {
