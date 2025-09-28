@@ -1,0 +1,8 @@
+package Peca;
+
+public class Peca {
+	private int linha;
+	private int coluna;
+	private boolean cor;
+	private int movimentos;
+}

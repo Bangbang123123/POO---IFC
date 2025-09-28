@@ -1,4 +1,0 @@
-
-public class Ambiente {
-	private float area;
-}
