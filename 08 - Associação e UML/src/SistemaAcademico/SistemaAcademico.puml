@@ -1,0 +1,58 @@
+@startuml
+
+class curso {
+  - String : nome
+  # List<fase> : fases
+}
+curso o-- aluno
+curso *-- fase
+
+class fase {
+  # List<disciplina> : disciplinas
+}
+fase *-- disciplina
+
+class situacao {
+  # List<aluno> : alunos
+  # List<disciplina> : disciplinas
+}
+situacao *-- aluno
+situacao *-- disciplina
+
+class frequencia {
+  - boolean presente
+  # List<professor> professores
+  # List<aluno> alunos
+}
+frequencia *-- professor
+frequencia *-- aluno
+
+class avaliacao {
+  - String nome
+  - float nota
+  # List<professor> professores
+  # List<aluno> alunos
+}
+avaliacao *-- professor
+avaliacao *-- aluno
+
+class disciplina {
+  - String nome
+  # List<frequencia> frequencias
+  # List<avaliacao> avaliacoes
+  # List<professor> professores
+  # List<aluno> alunos
+}
+disciplina o-- frequencia
+disciplina o-- avaliacao
+disciplina o-- "1..4" professor
+disciplina o-- aluno
+
+class aluno {
+  - String nome
+}
+class professor {
+  - String nome
+}
+
+@enduml
