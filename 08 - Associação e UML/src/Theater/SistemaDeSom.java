@@ -21,25 +21,32 @@ public class SistemaDeSom extends EquipamentoEletronico {
 		return potencia;
 	}
 	public void setMarca(String marca) {
-		this.marca = marca;
+		if (marca.length() > 0) {
+			this.marca = marca;
+		}
+		
 	}
 	public void setModelo(String modelo) {
-		this.modelo = modelo;
+		if (modelo.length() > 0) { 
+			this.modelo = modelo;
+		}
 	}
 	public void setPotencia(float potencia) {
-		this.potencia = potencia;
+		if (potencia > 0) {
+			this.potencia = potencia;
+		}
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("SistemaDeSom:\\n[marca: ");
+		builder.append("SistemaDeSom:\n[marca: ");
 		builder.append(marca);
-		builder.append("]\\n[modelo: ");
+		builder.append("]\n[modelo: ");
 		builder.append(modelo);
-		builder.append("]\\n[potencia: ");
+		builder.append("]\n[potencia: ");
 		builder.append(potencia);
-		builder.append("]\\n[toString(): ");
+		builder.append("]\n[toString(): ");
 		builder.append(super.toString());
 		builder.append("]");
 		return builder.toString();

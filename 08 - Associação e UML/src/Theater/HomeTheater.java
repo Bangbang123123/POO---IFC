@@ -8,7 +8,6 @@ public class HomeTheater {
 		setSom(som);
 		setVideo(video);
 	}
-	
 	public SistemaDeSom getSom() {
 		return som;
 	}
@@ -25,11 +24,11 @@ public class HomeTheater {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("HomeTheater:\\n[som: ");
+		builder.append("HomeTheater:\n[som: ");
 		builder.append(som);
-		builder.append("]\\n[video: ");
+		builder.append("]\n[video: ");
 		builder.append(video);
-		builder.append("]\\n[toString(): ");
+		builder.append("]\n[toString(): ");
 		builder.append(super.toString());
 		builder.append("]");
 		return builder.toString();

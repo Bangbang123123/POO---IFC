@@ -13,7 +13,7 @@ public class SistemaDeVideo extends EquipamentoEletronico {
 		setResolucao(resolucao);
 	}
 
-
+	
 	public String getMarca() {
 		return marca;
 	}
@@ -27,31 +27,39 @@ public class SistemaDeVideo extends EquipamentoEletronico {
 		return resolucao;
 	}
 	public void setMarca(String marca) {
-		this.marca = marca;
+		if (marca.length() > 0) {
+			this.marca = marca;
+		}
 	}
 	public void setModelo(String modelo) {
-		this.modelo = modelo;
+		if (modelo.length() > 0) { 
+			this.modelo = modelo;
+		}
 	}
 	public void setTipo(String tipo) {
-		this.tipo = tipo;
+		if (tipo.length() > 0) { 
+			this.tipo = tipo;
+		}
 	}
 	public void setResolucao(String resolucao) {
-		this.resolucao = resolucao;
+		if (resolucao.length() > 0) { 
+			this.resolucao = resolucao;
+		}
 	}
 
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("SistemaDeVideo:\\n[marca: ");
+		builder.append("SistemaDeVideo:\n[marca: ");
 		builder.append(marca);
-		builder.append("]\\n[modelo: ");
+		builder.append("]\n[modelo: ");
 		builder.append(modelo);
-		builder.append("]\\n[tipo: ");
+		builder.append("]\n[tipo: ");
 		builder.append(tipo);
-		builder.append("]\\n[resolucao: ");
+		builder.append("]\n[resolucao: ");
 		builder.append(resolucao);
-		builder.append("]\\n[toString(): ");
+		builder.append("]\n[toString(): ");
 		builder.append(super.toString());
 		builder.append("]");
 		return builder.toString();

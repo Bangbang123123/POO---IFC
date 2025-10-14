@@ -18,10 +18,14 @@ public class EquipamentoEletronico {
 		return consumo;
 	}
 	public void setTensao(float tensao) {
-		this.tensao = tensao;
+		if (tensao > 0) {
+			this.tensao = tensao;
+		}
 	}
 	public void setConsumo(float consumo) {
-		this.consumo = consumo;
+		if (consumo >= 0) {
+			this.consumo = consumo;
+		}
 	}
 	
 	
