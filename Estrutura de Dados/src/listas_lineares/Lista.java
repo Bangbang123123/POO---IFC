@@ -1,19 +1,19 @@
 package listas_lineares;
 
-public class Lista {
-	private Nodo nodo_start;
+public class Lista<T> {
+	private Nodo<T> nodo_start;
 	
-	public Nodo getNodoStart() {
+	public Nodo<T> getNodoStart() {
 		return this.nodo_start;
 	}
 	
 	public Lista() {}
-	public Lista(Nodo nodo_start) {
+	public Lista(Nodo<T> nodo_start) {
 		this.nodo_start = nodo_start;
 	}
 	
-	public Nodo get(int index) {
-		Nodo nodo_target = nodo_start;
+	public Nodo<T> get(int index) {
+		Nodo<T> nodo_target = nodo_start;
 		if (index >= 0 && size() != 0 && nodo_target != null) {
 			for (int i = 0; i < index; i++) {
 				nodo_target = nodo_target.getProx();
@@ -25,14 +25,14 @@ public class Lista {
 		}
 	}
 	
-	public void set(int index, int dado) {
-		Nodo nodo_target = get(index);
+	public void set(int index, T dado) {
+		Nodo<T> nodo_target = get(index);
 		nodo_target.setDado(dado);
 	}
 	
 	public int size() {
 		if (nodo_start != null) {
-			Nodo final_nodo = nodo_start;
+			Nodo<T> final_nodo = nodo_start;
 			int nodo_count = 0;
 			while (final_nodo != null) {
 				nodo_count++;
@@ -43,8 +43,8 @@ public class Lista {
 		return 0;
 	}
 	
-	public void add(Nodo new_nodo) {
-		Nodo final_nodo = get(size()-1);
+	public void add(Nodo<T> new_nodo) {
+		Nodo<T> final_nodo = get(size()-1);
 		if (final_nodo == null) {
 			nodo_start = new_nodo;
 		} else {
@@ -52,9 +52,9 @@ public class Lista {
 		}
 	}
 	
-	public void add(Nodo new_nodo, int index) {
-		Nodo back_nodo = get(index - 1);
-		Nodo front_nodo;
+	public void add(Nodo<T> new_nodo, int index) {
+		Nodo<T> back_nodo = get(index - 1);
+		Nodo<T> front_nodo;
 		
 		if (back_nodo == null) {
 			front_nodo = get(index);
@@ -80,12 +80,12 @@ public class Lista {
 		
 	}
 	
-	public void removeDado(int dado) {
+	public void removeDado(T dado) {
 		if (size() > 0) {
-			Nodo nodo_search = nodo_start;
-			Nodo aux = null;
+			Nodo<T> nodo_search = nodo_start;
+			Nodo<T> aux = null;
 			
-			while (nodo_search != null && nodo_search.getDado() != dado) {
+			while (nodo_search != null && !(nodo_search.getDado().equals(dado))) {
 				aux = nodo_search;
 				nodo_search = nodo_search.getProx();
 			}
@@ -96,13 +96,13 @@ public class Lista {
 		}
 	}
 	
-	public void removeTodos(int dado) {
+	public void removeTodos(T dado) {
 		if (size() > 0) {
-			Nodo nodo_search = nodo_start;
-			Nodo aux = null;
+			Nodo<T> nodo_search = nodo_start;
+			Nodo<T> aux = null;
 			
 			while (nodo_search != null) {
-				if (nodo_search.getDado() == dado) {
+				if (nodo_search.getDado().equals(dado)) {
 					aux.setProx(nodo_search.getProx());
 				} else {
 					aux = nodo_search;
@@ -116,7 +116,7 @@ public class Lista {
 	
 	public String toString() {
 		String content = "";
-		Nodo nodo_search = nodo_start;
+		Nodo<T> nodo_search = nodo_start;
 		for (int i = 0; i < size(); i++) {
 			content += "Nodo ["+ i +"]: "+ nodo_search.getDado() +"\n";
 			nodo_search = nodo_search.getProx();

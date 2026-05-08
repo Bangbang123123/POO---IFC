@@ -2,7 +2,7 @@ package listas_lineares.pilha;
 
 import listas_lineares.Nodo;
 
-public class PilhaDinamica<T> implements IPilha{
+public class PilhaDinamica<T> implements IPilha<T>{
 	// Attributes
 	private Nodo<T> topo;
 	
@@ -31,7 +31,7 @@ public class PilhaDinamica<T> implements IPilha{
 	public T pop() {
 		if (vazia()) {
 			System.out.print("Pilha vazia");
-			return -1;
+			return null;
 		}
 			
 		T valor_removido = topo.getDado();
@@ -43,7 +43,7 @@ public class PilhaDinamica<T> implements IPilha{
 	public T peek() {
 		if (vazia()) {
 			System.out.print("Pilha vazia");
-			return -1;
+			return null;
 		}
 		
 		return topo.getDado();
@@ -60,13 +60,54 @@ public class PilhaDinamica<T> implements IPilha{
 			texto_pilha.push(c);
 		}
 		
+		String content = "";
+		while (texto_pilha.getTopo() != null) {
+			content += texto_pilha.pop();
+		}
+		return content;
+	}
+	
+	public static String intToBinary(int num) {
+		PilhaDinamica<Integer> pilha = new PilhaDinamica<Integer>();
+		while (num != 0) {
+			pilha.push(num % 2);
+			num /= 2;
+		}
 		
-		
-		
-		
+		String content = "";
+		while (pilha.getTopo() != null) {
+			content += pilha.pop();
+		}
+		return content;
 	}
 	
 	
+	public static boolean testOpenEnd(String sequence) {
+		PilhaDinamica<Character> pilha = new PilhaDinamica<Character>();
+		
+		for (Character c : sequence.toCharArray()) {
+			switch (c) {
+			case '[':
+				pilha.push(c);
+				break;
+			case '{':
+				pilha.push(c);
+				break;
+			case ']':
+				if (! pilha.pop().equals('[')) {
+					return false;
+				}
+				break;
+			case '}':
+				if (! pilha.pop().equals('{')) {
+					return false;
+				}
+				break;
+			}
+		}
+		
+		return pilha.vazia();
+	}
 	
 	public String ToString() {
 		if (vazia()) {
@@ -74,7 +115,7 @@ public class PilhaDinamica<T> implements IPilha{
 		}
 		
 		String content = "Pilha:\n";
-		Nodo aux = topo;
+		Nodo<T> aux = topo;
 		
 		while (aux != null) {
 			content += "* "+ aux.getDado() +"\n";

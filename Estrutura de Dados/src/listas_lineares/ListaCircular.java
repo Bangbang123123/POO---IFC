@@ -1,9 +1,9 @@
 package listas_lineares;
 
-public class ListaCircular {
+public class ListaCircular<T> {
 	// Attributes
-	private Nodo inicio;
-	private Nodo fim;
+	private Nodo<T> inicio;
+	private Nodo<T> fim;
 	
 	// Constructor
 	public ListaCircular() {
@@ -12,24 +12,24 @@ public class ListaCircular {
 	}
 	
 	// Getters
-	public Nodo getInicio() {
+	public Nodo<T> getInicio() {
 		return inicio;
 	}
-	public Nodo getFim() {
+	public Nodo<T> getFim() {
 		return fim;
 	}
 
 	// Setters
-	public void setInicio(Nodo inicio) {
+	public void setInicio(Nodo<T> inicio) {
 		this.inicio = inicio;
 	}
-	public void setFim(Nodo fim) {
+	public void setFim(Nodo<T> fim) {
 		this.fim = fim;
 	}
 	
 	
-	public void addFirst(int valor) {
-		Nodo novo_nodo = new Nodo(valor);
+	public void addFirst(T valor) {
+		Nodo<T> novo_nodo = new Nodo<T>(valor);
 		
 		if (inicio == null) {
 			inicio = novo_nodo;
@@ -43,10 +43,10 @@ public class ListaCircular {
 		fim.setProx(inicio);
 	}
 	
-	public void addLast(int valor) {
+	public void addLast(T valor) {
 		
 		System.out.println("including "+ valor);
-		Nodo novo_nodo = new Nodo(valor);
+		Nodo<T> novo_nodo = new Nodo<T>(valor);
 		
 		if (inicio == null) {
 			inicio = novo_nodo;
@@ -61,10 +61,10 @@ public class ListaCircular {
 		
 	}
 	
-	public void removeValue(int valor) {
+	public void removeValue(T valor) {
 		if (inicio == null) {
 			return;
-		} else if (inicio.getDado() == valor) {
+		} else if (inicio.getDado().equals(valor)) {
 			if (inicio == fim) {
 				inicio = null;
 				fim = null;
@@ -75,9 +75,9 @@ public class ListaCircular {
 			return;
 		}
 		
-		Nodo search_nodo = inicio;
+		Nodo<T> search_nodo = inicio;
 		while (search_nodo.getProx() != inicio) {
-			if (search_nodo.getProx().getDado() == valor) {
+			if (search_nodo.getProx().getDado().equals(valor)) {
 				search_nodo.setProx(search_nodo.getProx());
 				
 				if (search_nodo.getProx() == fim) {
@@ -100,7 +100,7 @@ public class ListaCircular {
 			return 0;
 		}
 		
-		Nodo search_nodo = inicio;
+		Nodo<T> search_nodo = inicio;
 		int tamanho = 0;
 		while (search_nodo != fim) {
 			tamanho++;
@@ -109,13 +109,13 @@ public class ListaCircular {
 		return tamanho + 1;
 	}
 	
-	public Nodo imprimirMeio() {
+	public Nodo<T> imprimirMeio() {
 		if (inicio == null) {
 			return null;
 		}
 		
-		Nodo tartaruga = inicio;
-		Nodo lebre = inicio;
+		Nodo<T> tartaruga = inicio;
+		Nodo<T> lebre = inicio;
 		
 		int aux = 0;
 		while (lebre != fim) {
@@ -128,26 +128,26 @@ public class ListaCircular {
 		return tartaruga;
 	}
 	
-	public void transformarEmCircular(Lista list) {
+	public void transformarEmCircular(Lista<T> list) {
 		
-		Nodo nodo_inicio = list.getNodoStart();
-		Nodo nodo_fim = list.get(list.size()-1);
+		Nodo<T> nodo_inicio = list.getNodoStart();
+		Nodo<T> nodo_fim = list.get(list.size()-1);
 		
 		nodo_fim.setProx(nodo_inicio);
 		setInicio(nodo_inicio);
 		setFim(nodo_fim);
 	}
 	
-	public void concatenar(ListaCircular outra_lista) {
+	public void concatenar(ListaCircular<T> outra_lista) {
 		fim.setProx(outra_lista.getInicio());
 		fim = outra_lista.getFim();
 		fim.setProx(inicio);
 	}
 	
 	public void inverter() {
-		Nodo aux = inicio;
-		Nodo aux_2 = aux.getProx();
-		Nodo aux_3 = aux_2.getProx();
+		Nodo<T> aux = inicio;
+		Nodo<T> aux_2 = aux.getProx();
+		Nodo<T> aux_3 = aux_2.getProx();
 		
 		inicio.setProx(fim);
 		
@@ -165,8 +165,8 @@ public class ListaCircular {
 		fim = aux;
 	}
 	
-	public int batataQuente(int passes) {
-		Nodo next_nodo = inicio;
+	public T batataQuente(int passes) {
+		Nodo<T> next_nodo = inicio;
 		
 		while (inicio != fim) {
 			for (int i = 0; i < passes -1; i++) {
@@ -194,7 +194,7 @@ public class ListaCircular {
 	public String toString() {
 		String content = "";
 		
-		Nodo search_nodo = inicio;
+		Nodo<T> search_nodo = inicio;
 		
 		if (search_nodo == null) {
 			return "";
