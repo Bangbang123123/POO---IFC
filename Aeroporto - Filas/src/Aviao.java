@@ -36,7 +36,7 @@ public class Aviao {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("{[id:");
+		builder.append("* {[id:");
 		builder.append(id);
 		builder.append("],[combustível:");
 		builder.append(combustivel);
