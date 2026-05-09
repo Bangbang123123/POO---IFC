@@ -59,9 +59,12 @@ public class FilaAviao {
 			Aviao aviao = this.dequeue();
 			aviao.setCombustivel(aviao.getCombustivel()-1);
 			
-			if (aviao.getCombustivel() > 0) {
+			if (aviao.getCombustivel() >= 0) {
 				novaFila.enqueue(aviao);
+			} else {
+				System.out.println("\n\nAvião Caído\n\n");
 			}
+			
 		}
 		
 		inicio = novaFila.getInicio();
@@ -72,18 +75,16 @@ public class FilaAviao {
 	
 	public String ToString() {
 		if (inicio == null) {
-			return "Fila vazia\n";
+			return "* Fila vazia\n";
 		}
 		
 		String conteudo = "";
 		
 		NodoAviao aux = inicio;
-		int i = 0;
 		while (aux != null) {
-			conteudo += "["+ i +"]: "+ aux.getAviao().toString() +"\n";
+			conteudo += aux.getAviao().toString() +"\n";
 			
 			aux = aux.getProx();
-			i++;
 		}
 		
 		return conteudo;
