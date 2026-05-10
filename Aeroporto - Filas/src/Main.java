@@ -76,7 +76,7 @@ public class Main {
 				pousoEmergencia++;
 			} else if (filaPouso1.getTamanho() > filaDecolagem1.getTamanho()) {
 				// Calcula o tempo de espera e contabiliza pouso
-				tempoTotalPouso = tempoAtual - filaPouso1.dequeue().getTempo();
+				tempoTotalPouso += tempoAtual - filaPouso1.dequeue().getTempo();
 				qtdPouso++;
 			} else if (filaDecolagem1.getTamanho() > 0){
 				// Calcula o tempo de espera e contabiliza decolagem
@@ -91,7 +91,7 @@ public class Main {
 				pousoEmergencia++;
 			} else if (filaPouso2.getTamanho() > filaDecolagem2.getTamanho()) {
 				// Calcula o tempo de espera e contabiliza pouso
-				tempoTotalPouso = tempoAtual - filaPouso2.dequeue().getTempo();
+				tempoTotalPouso += tempoAtual - filaPouso2.dequeue().getTempo();
 				qtdPouso++;
 			} else if (filaDecolagem2.getTamanho() > 0){
 				// Calcula o tempo de espera e contabiliza decolagem
