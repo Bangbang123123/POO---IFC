@@ -1,13 +1,15 @@
 
 public class NodoAviao {
+	// Atributos
 	private Aviao aviao;
 	private NodoAviao prox;
 	
+	// Construtor
 	public NodoAviao(Aviao aviao) {
 		setAviao(aviao);
 	}
 	
-	
+	// Getters
 	public Aviao getAviao() {
 		return aviao;
 	}
@@ -15,7 +17,7 @@ public class NodoAviao {
 		return prox;
 	}
 	
-	
+	// Setters
 	public void setAviao(Aviao aviao) {
 		this.aviao = aviao;
 	}

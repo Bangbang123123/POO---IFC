@@ -1,16 +1,16 @@
 
 public class Aviao {
+	// Atributos
 	private int id;
 	private int combustivel;
 	private int tempo;
-	
+	// Construtor
 	public Aviao(int id, int combustivel, int tempo) {
 		setId(id);
 		setCombustivel(combustivel);
 		setTempo(tempo);
 	}
-	
-	
+	// Getters
 	public int getId() {
 		return id;
 	}
@@ -21,7 +21,7 @@ public class Aviao {
 		return tempo;
 	}
 	
-	
+	// Setters
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -31,8 +31,7 @@ public class Aviao {
 	public void setTempo(int tempo) {
 		this.tempo = tempo;
 	}
-
-
+	// ToString
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -45,6 +44,4 @@ public class Aviao {
 		builder.append("]}");
 		return builder.toString();
 	}
-	
-	
 }
