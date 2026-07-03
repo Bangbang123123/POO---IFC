@@ -67,6 +67,16 @@ public class Testing {
 		System.out.println("Quick sort (aleatório [100000]): \n* "+ (Sorting.quickSort(clone3)).toString());
 		System.out.println("Quick sort (aleatório [1000000]): \n* "+ (Sorting.quickSort(clone4)).toString());
 		
+		clone1 = data1.clone();
+		clone2 = data2.clone();
+		clone3 = data3.clone();
+		clone4 = data4.clone();
+
+		System.out.println("Radix sort (ordenado): \n* "+ (Sorting.radixSort(clone1)).toString());
+		System.out.println("Radix sort (reverso): \n* "+ (Sorting.radixSort(clone2)).toString());
+		System.out.println("Radix sort (aleatório [100000]): \n* "+ (Sorting.radixSort(clone3)).toString());
+		System.out.println("Radix sort (aleatório [1000000]): \n* "+ (Sorting.radixSort(clone4)).toString());
+		
 	}
 
 }

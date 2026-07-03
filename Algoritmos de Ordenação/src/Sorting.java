@@ -212,4 +212,52 @@ public class Sorting {
 		}
 	}
 	
+	public static Metrics radixSort(int[] array) {
+		Metrics metrics = new Metrics();
+		metrics.startTime();
+		
+		if (array == null || array.length <= 1) {
+			metrics.stopTime();
+			return metrics;
+		}
+		
+		int maior = array[0];
+		for (int i = 0; i < array.length; i++) {
+			if (maior < array[i]) {
+				maior = array[i];
+			}
+		}
+		
+		int exp = 1;
+		while (maior / exp > 0) {
+			countingSort(array, exp);
+			exp *= 10;
+		}
+		
+		metrics.stopTime();
+		return metrics;
+	}
+	
+	private static void countingSort(int[] array, int exp) {
+		int[] count = new int[10];
+		int[] output = new int[array.length];
+		
+		for (int i = 0; i < array.length; i++) {
+			count[(array[i] / exp) % 10]++;
+		}
+		
+		for (int i = 1; i < 10; i++) {
+			count[i] += count[i - 1];
+		}
+	    
+		for (int i = array.length - 1; i > -1; i--) {
+			int digit = (array[i] / exp) % 10;
+	        output[count[digit] - 1] = array[i];
+	        count[digit] -= 1;
+		}
+		
+		for (int i = 0; i < array.length; i++) {
+			array[i] = output[i];
+		}
+	}
 }
