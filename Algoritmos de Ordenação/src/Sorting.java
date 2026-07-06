@@ -239,6 +239,7 @@ public class Sorting {
 	}
 	
 	private static void countingSort(int[] array, int exp) {
+		
 		int[] count = new int[10];
 		int[] output = new int[array.length];
 		
@@ -260,4 +261,53 @@ public class Sorting {
 			array[i] = output[i];
 		}
 	}
+	
+	private static void heapify(int[] array, int n, int i, Metrics metrics) {
+        int largest = i;
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+
+        metrics.addComparison();
+        metrics.addComparison();
+        if (left < n && array[left] > array[largest]) {
+            largest = left;
+        }
+
+        metrics.addComparison();
+        metrics.addComparison();
+        if (right < n && array[right] > array[largest]) {
+            largest = right;
+        }
+
+        if (largest != i) {
+        	metrics.addSwap();
+            int swap = array[i];
+            array[i] = array[largest];
+            array[largest] = swap;
+
+            heapify(array, n, largest, metrics);
+        }
+    }
+	
+	public static Metrics heapSort(int[] array) {
+		Metrics metrics = new Metrics();
+		metrics.startTime();
+		
+        int n = array.length;
+
+        for (int i = n / 2 - 1; i >= 0; i--) {
+            heapify(array, n, i, metrics);
+        }
+
+        for (int i = n - 1; i > 0; i--) {
+            int temp = array[0];
+            array[0] = array[i];
+            array[i] = temp;
+
+            heapify(array, i, 0, metrics);
+        }
+        
+        metrics.stopTime();
+		return metrics;
+    }
 }
