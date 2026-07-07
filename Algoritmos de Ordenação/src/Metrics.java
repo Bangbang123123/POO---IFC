@@ -1,8 +1,8 @@
 
 public class Metrics {
 	private long time;
-	private int comparisons = 0;
-	private int swaps = 0;
+	private long comparisons = 0;
+	private long swaps = 0;
 	
 	public void addComparison() {
 		comparisons++;
@@ -18,6 +18,17 @@ public class Metrics {
 	}
 	
 	public String toString() {
-		return "Tempo: "+ time +" ms // Comparações: "+ comparisons +" // Trocas: "+ swaps;
+		// Divide o tempo em minutos, segundos, milissegundos e nanossegundos
+		long nanoseconds = time;
+		long miliseconds = nanoseconds/1000000;
+		long seconds = miliseconds/1000;
+		long minutes = seconds/60;
+		
+		nanoseconds -= miliseconds * 1000000;
+		miliseconds -= seconds * 1000;
+		seconds -= minutes * 60;
+		
+		// Retorna tempo, comparações e trocas
+		return "Tempo: "+ minutes +"m "+ seconds +"s "+ miliseconds +"ms "+ nanoseconds +"ns // Comparações: "+ comparisons +" // Trocas: "+ swaps;
 	}
 }
